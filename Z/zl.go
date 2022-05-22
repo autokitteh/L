@@ -3,7 +3,7 @@ package Z
 import (
 	"go.uber.org/zap"
 
-	L "github.com/autokitteh/autokitteh/pkg/l"
+	"github.com/autokitteh/L"
 )
 
 type ZL struct{ Z *zap.SugaredLogger }
