@@ -1,4 +1,4 @@
-package l
+package L
 
 func N(l L) Nullable {
 	if l != nil {

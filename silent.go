@@ -1,4 +1,4 @@
-package l
+package L
 
 type Silent struct{ L }
 
