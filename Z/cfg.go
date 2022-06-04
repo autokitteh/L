@@ -16,11 +16,12 @@ type Config struct {
 	// for console output), and False for machine readable (appropiate for
 	// automated consumption as a JSON blob).
 	Dev bool `envconfig:"DEV" default:"true" json:"dev"`
+
+	ErrorStackTrace bool
 }
 
 var DefaultOpts = []zap.Option{
 	zap.AddCaller(),
-	zap.AddStacktrace(zapcore.ErrorLevel),
 }
 
 // New returns a new Zap logger based on the given configuration.
@@ -43,6 +44,10 @@ func New(cfg Config, f func(*zap.Config), zopts []zap.Option) (*zap.SugaredLogge
 
 	if zopts == nil {
 		zopts = DefaultOpts
+
+		if cfg.ErrorStackTrace {
+			zopts = append(zopts, zap.AddStacktrace(zapcore.ErrorLevel))
+		}
 	}
 
 	z, err := zcfg.Build(zopts...)
