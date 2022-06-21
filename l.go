@@ -40,6 +40,7 @@ func Error(l L, msg string, pairs ...interface{}) error {
 
 	for len(pairs) > 1 {
 		args = append(args, fmt.Sprintf("%s: %v", pairs[0], pairs[1]))
+		pairs = pairs[2:]
 	}
 
 	if len(pairs) > 0 {
